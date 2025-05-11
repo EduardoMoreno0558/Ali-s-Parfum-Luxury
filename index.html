@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ali's Farfum Luxury</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to right, #000000, #001f3f);
+      color: white;
+    }
+    header {
+      background-color: #001933;
+      padding: 1rem;
+      text-align: center;
+    }
+    header h1 {
+      color: #00bfff;
+      font-size: 2.5rem;
+      margin: 0;
+    }
+    .catalogo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+    .producto {
+      background: #021e39;
+      border: 2px solid #00bfff;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .producto img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .producto h2 {
+      color: #ff69b4;
+    }
+    .btn-comprar {
+      background-color: #ffcc00;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      color: black;
+      font-weight: bold;
+    }
+    .pedido {
+      padding: 2rem;
+      background: #000000;
+      text-align: center;
+    }
+    .pedido input, .pedido textarea {
+      width: 80%;
+      padding: 0.5rem;
+      margin: 0.5rem;
+      border-radius: 5px;
+      border: none;
+    }
+    .pedido button {
+      background-color: #00ffcc;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ali's Farfum Luxury</h1>
+    <p>Perfumes exclusivos con estilo y elegancia</p>
+  </header>
+
+  <section class="catalogo">
+    <!-- Ejemplo de producto -->
+    <div class="producto">
+      <img src="https://via.placeholder.com/200x200" alt="Perfume Ejemplo">
+      <h2>Perfume de Muestra</h2>
+      <p>$999 MXN</p>
+      <button class="btn-comprar" onclick="seleccionarProducto('Perfume de Muestra')">Comprar</button>
+    </div>
+    <!-- Puedes agregar más productos aquí -->
+  </section>
+
+  <section class="pedido">
+    <h2>Realiza tu pedido</h2>
+    <form onsubmit="enviarPedido(event)">
+      <input type="text" id="nombre" placeholder="Tu nombre" required><br>
+      <input type="text" id="direccion" placeholder="Dirección de entrega" required><br>
+      <textarea id="productos" placeholder="Productos seleccionados" readonly></textarea><br>
+      <button type="submit">Enviar pedido</button>
+    </form>
+  </section>
+
+  <script>
+    let productosSeleccionados = [];
+
+    function seleccionarProducto(nombre) {
+      productosSeleccionados.push(nombre);
+      document.getElementById('productos').value = productosSeleccionados.join(', ');
+      alert('Producto agregado: ' + nombre);
+    }
+
+    function enviarPedido(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value;
+      const direccion = document.getElementById('direccion').value;
+      const productos = productosSeleccionados.join(', ');
+
+      const mensaje = `Nuevo pedido de: ${nombre}\nDirección: ${direccion}\nProductos: ${productos}`;
+
+      // Aquí puedes integrar envío por Telegram o WhatsApp
+      console.log(mensaje);
+      alert("Pedido enviado. Nos pondremos en contacto contigo.");
+    }
+  </script>
+</body>
+</html>
